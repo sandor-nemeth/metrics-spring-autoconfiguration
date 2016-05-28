@@ -1,28 +1,5 @@
-<!--
-
-    The MIT License
-    Copyright (c) 2016 Sandor Nemeth
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
-
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.sandor-nemeth.metrics</groupId>
@@ -50,6 +27,15 @@
         <checkstyle-plugin.version>2.17</checkstyle-plugin.version>
         <jar-plugin.version>3.0.0</jar-plugin.version>
         <source-plugin.version>3.0.0</source-plugin.version>
+        <copy-rename-plugin.version>1.0</copy-rename-plugin.version>
+        <doxia-markdown-plugin.version>1.7</doxia-markdown-plugin.version>
+        <findbugs-plugin.version>3.0.3</findbugs-plugin.version>
+        <pmd-plugin.version>3.6</pmd-plugin.version>
+        <jxr-plugin.version>2.5</jxr-plugin.version>
+        <jacoco.version>0.7.6.201602180812</jacoco.version>
+        <licence-plugin.version>2.11</licence-plugin.version>
+        <coveralls-plugin.version>4.1.0</coveralls-plugin.version>
+        <release-plugin.version>2.5.3</release-plugin.version>
 
         <!-- dependency versions -->
         <junit.version>4.12</junit.version>
@@ -72,8 +58,8 @@
         <url>https://github.com/${github.user}/${github.project}</url>
         <connection>scm:git:git://github.com/${github.user}/${github.project}.git</connection>
         <developerConnection>scm:git:git@github.com:${github.user}/${github.project}.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <developers>
         <developer>
@@ -100,7 +86,7 @@
             <plugin>
                 <groupId>com.coderplus.maven.plugins</groupId>
                 <artifactId>copy-rename-maven-plugin</artifactId>
-                <version>1.0</version>
+                <version>${copy-rename-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>copy-file</id>
@@ -124,7 +110,7 @@
                     <dependency>
                         <groupId>org.apache.maven.doxia</groupId>
                         <artifactId>doxia-module-markdown</artifactId>
-                        <version>1.7</version>
+                        <version>${doxia-markdown-plugin.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -168,17 +154,18 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.3</version>
+                <version>${findbugs-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${checkstyle-plugin.version}</version>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.6</version>
+                <version>${pmd-plugin.version}</version>
                 <configuration>
                     <linkXref>true</linkXref>
                     <sourceEncoding>utf-8</sourceEncoding>
@@ -188,7 +175,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.5</version>
+                <version>${jxr-plugin.version}</version>
                 <configuration>
                     <linkJavadoc>true</linkJavadoc>
                 </configuration>
@@ -197,7 +184,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
                         <id>pre-unit-test</id>
@@ -276,7 +263,7 @@
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>2.11</version>
+                <version>${licence-plugin.version}</version>
                 <configuration>
                     <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
                     <properties>
@@ -288,6 +275,7 @@
                         <exclude>src/test/resources/**</exclude>
                         <exclude>src/main/resources/**</exclude>
                         <exclude>**/settings.xml</exclude>
+                        <exclude>**/pom.xml</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -302,7 +290,7 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>4.1.0</version>
+                <version>${coveralls-plugin.version}</version>
                 <configuration>
                     <jacocoReports>
                         <jacocoReport>${project.build.directory}/site/jacoco-ut/jacoco.xml</jacocoReport>
@@ -314,7 +302,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>${release-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
@@ -341,7 +329,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.5</version>
+                <version>${jxr-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -356,7 +344,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.3</version>
+                <version>${findbugs-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -366,12 +354,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.6</version>
+                <version>${pmd-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
+                <version>${jacoco.version}</version>
             </plugin>
         </plugins>
     </reporting>
