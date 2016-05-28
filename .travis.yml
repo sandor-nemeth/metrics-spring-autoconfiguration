@@ -4,7 +4,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - mvn test
+  - mvn clean verify
 
 after_success:
-  - mvn clean
+  - mvn clean verify coveralls:report

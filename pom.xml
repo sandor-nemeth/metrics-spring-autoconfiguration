@@ -298,6 +298,18 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.1.0</version>
+                <configuration>
+                    <jacocoReports>
+                        <jacocoReport>${project.build.directory}/site/jacoco-ut/jacoco.xml</jacocoReport>
+                        <jacocoReport>${project.build.directory}/site/jacoco-it/jacoco.xml</jacocoReport>
+                    </jacocoReports>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
