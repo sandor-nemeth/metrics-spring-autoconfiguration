@@ -310,8 +310,22 @@
                     </jacocoReports>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+            </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-maven</id>
+            <name>bintray-maven</name>
+            <url>https://api.bintray.com/maven/sandor-nemeth/maven/metrics-spring-autoconfiguration;publish=1</url>
+        </repository>
+    </distributionManagement>
 
     <reporting>
         <plugins>
