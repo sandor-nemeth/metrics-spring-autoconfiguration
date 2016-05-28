@@ -20,6 +20,14 @@
 
         <!-- plugin versions -->
         <compiler-plugin.version>3.5.1</compiler-plugin.version>
+        <maven-site-plugin.version>3.5.1</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+        <javadoc-plugin.version>2.10.3</javadoc-plugin.version>
+        <surefire.version>2.19.1</surefire.version>
+        <checkstyle-plugin.version>2.17</checkstyle-plugin.version>
+        <jar-plugin.version>3.0.0</jar-plugin.version>
+        <source-plugin.version>3.0.0</source-plugin.version>
+
         <!-- dependency versions -->
         <junit.version>4.12</junit.version>
     </properties>
@@ -65,32 +73,32 @@
                 </configuration>
             </plugin>
             <!--<plugin>-->
-                <!--<groupId>com.github.github</groupId>-->
-                <!--<artifactId>site-maven-plugin</artifactId>-->
-                <!--<version>0.12</version>-->
-                <!--<configuration>-->
-                    <!--<message>Building site for ${project.version}</message>-->
-                    <!--<server>github</server>-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>site</goal>-->
-                        <!--</goals>-->
-                        <!--<phase>site</phase>-->
-                    <!--</execution>-->
-                <!--</executions>-->
+            <!--<groupId>com.github.github</groupId>-->
+            <!--<artifactId>site-maven-plugin</artifactId>-->
+            <!--<version>0.12</version>-->
+            <!--<configuration>-->
+            <!--<message>Building site for ${project.version}</message>-->
+            <!--<server>github</server>-->
+            <!--</configuration>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<goals>-->
+            <!--<goal>site</goal>-->
+            <!--</goals>-->
+            <!--<phase>site</phase>-->
+            <!--</execution>-->
+            <!--</executions>-->
             <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>${maven-site-plugin.version}</version>
                 <configuration>
                     <reportPlugins>
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-project-info-reports-plugin</artifactId>
-                            <version>2.9</version>
+                            <version>${maven-project-info-reports-plugin.version}</version>
                             <configuration>
                                 <dependencyDetailsEnabled>true</dependencyDetailsEnabled>
                                 <dependencyLocationsEnabled>true</dependencyLocationsEnabled>
@@ -98,26 +106,42 @@
                         </plugin>
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-jxr-plugin</artifactId>
+                            <version>2.5</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-javadoc-plugin</artifactId>
-                            <version>2.10.3</version>
+                            <version>${javadoc-plugin.version}</version>
                         </plugin>
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-surefire-report-plugin</artifactId>
-                            <version>2.19.1</version>
+                            <version>${surefire.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>findbugs-maven-plugin</artifactId>
+                            <version>3.0.3</version>
                         </plugin>
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-checkstyle-plugin</artifactId>
-                            <version>2.17</version>
+                            <version>${checkstyle-plugin.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-pmd-plugin</artifactId>
+                            <version>3.6</version>
                         </plugin>
                     </reportPlugins>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${jar-plugin.version}</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -130,7 +154,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>${javadoc-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -142,7 +166,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${source-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -150,6 +174,34 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.6</version>
+                <configuration>
+                    <linkXref>true</linkXref>
+                    <sourceEncoding>utf-8</sourceEncoding>
+                    <minimumTokens>100</minimumTokens>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <linkJavadoc>true</linkJavadoc>
+                </configuration>
             </plugin>
         </plugins>
     </build>
