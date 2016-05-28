@@ -22,35 +22,32 @@
  */
 package io.github.sandor_nemeth.metrics;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import java.lang.reflect.Constructor;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
+import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest
-        extends TestCase {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest(String testName) {
-        super(testName);
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite() {
-        return new TestSuite(AppTest.class);
-    }
+public class AppTest {
 
     /**
      * Rigourous Test :-)
      */
+    @Test
     public void testApp() {
-        assertTrue(true);
+        App.main();
+    }
+
+    @Test
+    public void hasPrivateConstructor() throws Exception {
+        Constructor<App> cnr = App.class.getDeclaredConstructor();
+        assertThat(cnr, notNullValue());
+        cnr.setAccessible(true);
+        cnr.newInstance();
     }
 }
